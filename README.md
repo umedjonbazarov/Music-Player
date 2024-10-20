@@ -12,7 +12,7 @@ Music-Player — это простое приложение для воспро�
 
 1. Клонируйте репозиторий:
 
-   git clone https://github.com/ваш_пользователь/Music-Player.git
+   git clone https://github.com/umedjonbazarov/Music-Player.git
    cd Music-Player
 
 2. Установите зависимости:
