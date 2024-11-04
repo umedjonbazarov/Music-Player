@@ -1,64 +1,85 @@
-# Music-Player
+# Music Player
 
-## Описание проекта
+A simple music player application built with Python using Tkinter for the GUI and Pygame for audio playback. This application allows users to browse, play, pause, and navigate through their music tracks, displaying album art when available.
 
-Music-Player — это простое приложение для воспроизведения музыки, созданное с использованием библиотеки PySimpleGUI для интерфейса и библиотеки Pygame для обработки аудио. Оно позволяет пользователю загружать музыкальные файлы, управлять воспроизведением, а также просматривать текущую дорожку.
+## Features
 
-## Установка
+- Load and play MP3 files from a specified directory.
+- Play, pause, stop, skip to the next track, and go back to the previous track.
+- Display the current track title and its duration.
+- Show album art for the currently playing track.
+- A responsive GUI with progress tracking for playback.
 
-Для запуска проекта вам понадобятся Python и несколько библиотек. Убедитесь, что у вас установлен Python 3.6 или новее. Вы можете скачать Python с [официального сайта](https://www.python.org/downloads/).
+## Requirements
 
-### Шаги по установке:
+To run this application, ensure you have the following dependencies installed:
 
-1. Клонируйте репозиторий:
+- Python 3.x
+- Pygame
+- Mutagen
+- Pillow (PIL)
+- Tkinter (usually included with Python)
 
-   git clone https://github.com/umedjonbazarov/Music-Player.git
-   cd Music-Player
+You can install the required packages using pip:
 
-2. Установите зависимости:
+```bash
+pip install pygame mutagen pillow
+```
 
-   Вы можете использовать pip для установки необходимых библиотек:
+## Usage
 
-   pip install PySimpleGUI pygame
+1. Clone this repository or download the code files to your local machine.
+2. Update the `rootpath` variable in the `MusicPlayer` class with the path to your music folder containing MP3 files.
+3. Place the image files for the buttons in the `PNG` folder (ensure to rename them accordingly).
+4. Run the application:
 
-## Использование
+```bash
+python music_player.py
+```
 
-1. Запустите приложение, выполнив следующую команду в терминале:
+5. Select a track from the list to play, and use the control buttons to manage playback.
 
-   python music_player.py
+## Directory Structure
 
-2. После запуска программы вы увидите основной интерфейс Music-Player.
+```
+Music-Player/
+│
+├── music_player.py         # Main application file
+├── PNG/                     # Directory for button images
+│   ├── play_img.png
+│   ├── pause_img.png
+│   ├── stop_img.png
+│   ├── next_img.png
+│   └── prev_img.png
+└── playlist/                # Directory for your MP3 files
+    ├── track1.mp3
+    ├── track2.mp3
+    └── ...
+```
 
-3. Чтобы загрузить музыкальный файл, нажмите кнопку "Загрузить". Выберите файл формата .mp3 или .wav с вашего устройства.
+## Contributing
 
-4. Используйте кнопки управления (Play, Pause, Stop) для управления воспроизведением музыки.
+Feel free to contribute to this project by forking the repository, making your changes, and submitting a pull request. 
 
-5. Вы можете видеть текущую дорожку, которая воспроизводится, а также управлять уровнем громкости.
+## Acknowledgments
 
-## Функциональность
+- This project uses the Pygame library for audio playback.
+- Album art extraction is done using the Mutagen library.
 
-- Загрузка музыки: Пользователи могут загружать свои любимые треки.
-- Воспроизведение: Простое управление воспроизведением (Play, Pause, Stop).
-- Регулировка громкости: Пользователи могут настраивать громкость музыки.
-- Отображение информации о треке: Отображается название текущего трека.
-
-## Скриншоты
-
-Пока нет кода(скоро добавим)!
-
-## Документация 
-
-Бул=дем добавлять по мере развития!!!
-
-## Участие в проекте
-
-На данный момен я единственный участник)))). Ждем помощь!
+## Patterns
 
 
-## Контакты
+1. **Singleton**:
+   - The Singleton pattern ensures that only one instance of a class is created. In your code, this is implemented through the static method `get_instance()` in the `MusicPlayer` class, which guarantees that only one instance of the player will be created.
 
-Если у вас есть вопросы или предложения, вы можете связаться со мной по электронной почте: umedbazarov2002@gmail.com)))
+2. **Command**:
+   - The Command pattern encapsulates requests as objects, allowing you to parameterize objects with queues, log them, and support undo operations. In your code, the classes `PlayCommand`, `StopCommand`, `PauseCommand`, `NextCommand`, and `PreviousCommand` implement this pattern, enabling control over actions in the music player through their invocation.
 
----
+3. **Observer** (to some extent):
+   - Although implemented implicitly, there are elements of the observer pattern in your code. For example, when a track is selected in the `Listbox`, the `on_select_track` method updates the current state of the player. If there were additional subscribers, they could respond to changes in the player's state.
 
-Спасибо за интерес к Music-Player! Надеемся, он принесет вам много удовольствия!
+4. **MVC (Model-View-Controller)**:
+   - Your code exhibits elements of the MVC pattern. The `MusicPlayer` can be seen as the controller that manages the application's logic (playing music, managing tracks), while the Tkinter interface represents the view. The data (model) is stored in the form of a list of tracks and their metadata.
+
+5. **Strategy** (to some extent):
+   - If you had multiple methods for managing playback (for instance, different ways to control track playback), you could apply the Strategy pattern to encapsulate those algorithms. In the current version, this is not explicitly expressed, but the concept could be applied if you need to change the ways playback is managed.
