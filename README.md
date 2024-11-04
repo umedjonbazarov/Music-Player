@@ -70,16 +70,12 @@ Feel free to contribute to this project by forking the repository, making your c
 
 
 1. **Singleton**:
-   - The Singleton pattern ensures that only one instance of a class is created. In your code, this is implemented through the static method `get_instance()` in the `MusicPlayer` class, which guarantees that only one instance of the player will be created.
-
+   
 2. **Command**:
-   - The Command pattern encapsulates requests as objects, allowing you to parameterize objects with queues, log them, and support undo operations. In your code, the classes `PlayCommand`, `StopCommand`, `PauseCommand`, `NextCommand`, and `PreviousCommand` implement this pattern, enabling control over actions in the music player through their invocation.
-
+   
 3. **Observer** (to some extent):
-   - Although implemented implicitly, there are elements of the observer pattern in your code. For example, when a track is selected in the `Listbox`, the `on_select_track` method updates the current state of the player. If there were additional subscribers, they could respond to changes in the player's state.
-
+   
 4. **MVC (Model-View-Controller)**:
-   - Your code exhibits elements of the MVC pattern. The `MusicPlayer` can be seen as the controller that manages the application's logic (playing music, managing tracks), while the Tkinter interface represents the view. The data (model) is stored in the form of a list of tracks and their metadata.
-
+   
 5. **Strategy** (to some extent):
-   - If you had multiple methods for managing playback (for instance, different ways to control track playback), you could apply the Strategy pattern to encapsulate those algorithms. In the current version, this is not explicitly expressed, but the concept could be applied if you need to change the ways playback is managed.
+   
